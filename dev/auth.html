@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>開発ログイン中...</title>
+  </head>
+  <body>
+    <script type="module">
+      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+      const supabase = createClient(
+        "https://YOUR-DEV-PROJECT.supabase.co", // ← 開発用 Supabase URL
+        "YOUR-DEV-ANON-KEY"                     // ← 開発用 anon key
+      );
+
+      const { data, error } = await supabase.auth.getSession();
+
+      if (data?.session) {
+        chrome.runtime.sendMessage({
+          type: "auth",
+          token: data.session.access_token,
+        });
+        window.close();
+      } else {
+        document.body.innerText = "ログインに失敗しました";
+      }
+    </script>
+  </body>
+</html>
