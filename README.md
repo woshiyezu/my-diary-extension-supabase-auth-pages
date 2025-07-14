@@ -1,0 +1,1 @@
+# my-diary-extension-supabase-auth-pages
