@@ -8,8 +8,8 @@
       import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
       const supabase = createClient(
-        "https://YOUR-DEV-PROJECT.supabase.co", // ← 開発用 Supabase URL
-        "YOUR-DEV-ANON-KEY"                     // ← 開発用 anon key
+        "https://hfqfrbbzxlwwrcugejyj.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhmcWZyYmJ6eGx3d3JjdWdlanlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIzNDMxODgsImV4cCI6MjA2NzkxOTE4OH0.TCg39SxJSzbiNO4weBZF94ElxOAeC-efTcH5KkIbi70"
       );
 
       const { data, error } = await supabase.auth.getSession();
