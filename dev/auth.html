@@ -19,7 +19,12 @@
           type: "auth",
           token: data.session.access_token,
         });
-        window.close();
+
+        if (window.opener) {
+          window.close();
+        } else {
+          document.body.innerText = "ログインに成功しました。ウィンドウを閉じてください。";
+        }
       } else {
         document.body.innerText = "ログインに失敗しました";
       }
