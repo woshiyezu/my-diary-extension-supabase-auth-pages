@@ -1,28 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>本番ログイン中...</title>
-  </head>
-  <body>
-    <script type="module">
-      import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+  const supabase = createClient("https://your-project.supabase.co", "your-anon-key");
 
-      const supabase = createClient(
-        "https://YOUR-PROD-PROJECT.supabase.co", // ← 本番用 Supabase URL
-        "YOUR-PROD-ANON-KEY"                     // ← 本番用 anon key
-      );
-
-      const { data, error } = await supabase.auth.getSession();
-
-      if (data?.session) {
-        chrome.runtime.sendMessage({
-          type: "auth",
-          token: data.session.access_token,
-        });
-        window.close();
-      } else {
-        document.body.innerText = "ログインに失敗しました";
-      }
-    </script>
-  </body>
-</html>
+  const { data, error } = await supabase.auth.getSession();
+  if (data?.session) {
+    const token = data.session.access_token;
+    // 👇 拡張内の close.html にリダイレクト
+    location.href = `chrome-extension://gijeljnppkaoidcndjbcgbbjfkhcjlki/close.html?token=${token}`;
+  } else {
+    document.body.innerText = "ログインに失敗しました";
+  }
+</script>
