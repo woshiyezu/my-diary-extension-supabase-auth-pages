@@ -5,8 +5,7 @@
   const { data, error } = await supabase.auth.getSession();
   if (data?.session) {
     const token = data.session.access_token;
-    // 👇 拡張内の close.html にリダイレクト
-    location.href = `chrome-extension://gijeljnppkaoidcndjbcgbbjfkhcjlki/close.html?token=${token}`;
+    location.href = `chrome-extension://gijeljnppkaoidcndjbcgbbjfkhcjlki/return.html?token=${token}`;
   } else {
     document.body.innerText = "ログインに失敗しました";
   }
